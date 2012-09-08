@@ -36,6 +36,23 @@
 		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
 	</extension>
 	
+	<dwr>
+		<allow>
+			<convert converter="bean" match="org.openmrs.module.cohortbuilder.web.dwr.DefinitionListItem"/>
+			<create creator="new" javascript="DWRCohortBuilderService">
+				<param name="class" value="org.openmrs.module.cohortbuilder.web.dwr.DWRCohortBuilderService" />
+				<include method="getDefinitions"/>
+			</create>
+		</allow>	
+		<signatures>
+			<![CDATA[
+				import org.openmrs.module.cohortbuilder.web.dwr.DWRCohortBuilderService;
+				
+				DWRCohortBuilderService.getDefinitions(String name);
+			]]>
+		</signatures>
+	</dwr>
+	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 				

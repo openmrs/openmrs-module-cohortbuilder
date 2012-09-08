@@ -15,7 +15,6 @@ package org.openmrs.module.cohortbuilder.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.api.context.Context;
 import org.openmrs.module.cohortbuilder.CohortBuilderConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,15 +22,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * The main controller.
+ * The controller that processes the cohort builder requests
  */
 @Controller
-public class  CohortBuilderManageController {
+public class CohortBuilderListController {
+	
+	private static final String COHORT_BUILDER_LIST = "module/" + CohortBuilderConstants.MODULE_ID + "/cohortBuilder";
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	@RequestMapping(value = "/module/" + CohortBuilderConstants.MODULE_ID+"/manage", method = RequestMethod.GET)
-	public void manage(ModelMap model) {
-		model.addAttribute("user", Context.getAuthenticatedUser());
+	@RequestMapping(method = RequestMethod.GET)
+	public String getCohorts(ModelMap model) {
+		return COHORT_BUILDER_LIST;
 	}
 }

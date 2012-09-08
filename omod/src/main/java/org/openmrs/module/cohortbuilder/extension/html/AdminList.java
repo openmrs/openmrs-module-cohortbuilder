@@ -17,11 +17,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.openmrs.module.Extension;
+import org.openmrs.module.cohortbuilder.CohortBuilderConstants;
 import org.openmrs.module.web.extension.AdministrationSectionExt;
 
 /**
  * This class defines the links that will appear on the administration page under the
- * "cohortbuilder.title" heading. 
+ * "cohortbuilder.title" heading.
  */
 public class AdminList extends AdministrationSectionExt {
 	
@@ -36,7 +37,7 @@ public class AdminList extends AdministrationSectionExt {
 	 * @see AdministrationSectionExt#getTitle()
 	 */
 	public String getTitle() {
-		return "cohortbuilder.title";
+		return CohortBuilderConstants.MODULE_ID + ".title";
 	}
 	
 	/**
@@ -44,7 +45,7 @@ public class AdminList extends AdministrationSectionExt {
 	 */
 	public Map<String, String> getLinks() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-		map.put("/module/cohortbuilder/manage.form", "cohortbuilder.manage");
+		map.put("/module/" + CohortBuilderConstants.MODULE_ID + "/manage.form", CohortBuilderConstants.MODULE_ID + ".manage");
 		return map;
 	}
 	

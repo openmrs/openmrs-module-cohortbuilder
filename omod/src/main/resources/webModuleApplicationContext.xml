@@ -22,11 +22,17 @@
 
 	<!-- Add here beans related to the web context -->
 
-	 
-	<!-- Annotation based controllers -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
-	
-	<context:component-scan base-package="org.openmrs.module.cohortbuilder.web.controller" />
- 
-		
+	<bean id="cohortbuilderMapping"	class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="order">
+			<value>10</value>
+		</property>
+		<property name="mappings">
+			<props>
+				<prop key="cohortBuilder.list">cohortBuilderListController</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="cohortBuilderListController" class="${project.parent.groupId}.${project.parent.artifactId}.web.controller.CohortBuilderListController" />
+
 </beans>
