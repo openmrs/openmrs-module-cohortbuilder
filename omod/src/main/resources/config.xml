@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+
+	<!-- Module Properties -->
+	<id>${project.parent.artifactId}</id>
+	<name>${project.parent.name}</name>
+	<version>${project.parent.version}</version>
+	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
+	<author>OpenMRS Developers</author>
+	<description>
+		${project.parent.description}
+	</description>
+	<updateURL>https://dev.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
+	<require_version>${openMRSVersion}</require_version>
+	<!-- / Module Properties -->
+
+	
+	<!-- Required Modules -->
+	<require_modules>
+																											
+		<require_module version="0.7.2">
+			org.openmrs.module.reporting
+		</require_module>
+			
+	</require_modules>
+	<!-- / Required Modules -->
+	
+	<!-- Module Activator -->
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.CohortBuilderActivator</activator>
+	
+	
+	<!-- Adds link to admin page -->
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
+	</extension>
+	
+	<dwr>
+		<allow>
+			<convert converter="bean" match="org.openmrs.module.cohortbuilder.web.dwr.DefinitionListItem"/>
+			<create creator="new" javascript="DWRCohortBuilderService">
+				<param name="class" value="org.openmrs.module.cohortbuilder.web.dwr.DWRCohortBuilderService" />
+				<include method="getDefinitions"/>
+			</create>
+		</allow>	
+		<signatures>
+			<![CDATA[
+				import org.openmrs.module.cohortbuilder.web.dwr.DWRCohortBuilderService;
+				
+				DWRCohortBuilderService.getDefinitions(String name);
+			]]>
+		</signatures>
+	</dwr>
+	
+	<!-- Maps hibernate file's, if present -->
+	<mappingFiles>
+				
+	</mappingFiles>
+
+	<!-- Internationalization -->
+	<!-- All message codes should start with ${project.parent.artifactId}. -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+</module>
+
